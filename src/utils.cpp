@@ -36,7 +36,7 @@
 #include <QDebug>
 #include <QDateTime>
 #include <QDir>
-#include <QWebFrame>
+#include <QtWebKitWidgets/QWebFrame>
 
 static QString findScript(const QString& jsFilePath, const QString& libraryPath)
 {
@@ -135,7 +135,7 @@ bool injectJsInFrame(const QString& jsFilePath, const QString& jsFileLanguage, c
         return false;
     }
     // Execute JS code in the context of the document
-    targetFrame->evaluateJavaScript(scriptBody);
+    targetFrame->evaluateJavaScript(scriptBody, QString(JAVASCRIPT_SOURCE_CODE_URL).arg(QFileInfo(scriptPath).fileName()));
     return true;
 }
 
@@ -150,10 +150,10 @@ bool loadJSForDebug(const QString& jsFilePath, const QString& jsFileLanguage, co
     QString scriptBody = jsFromScriptFile(scriptPath, jsFileLanguage, jsFileEnc);
 
     scriptBody = QString("function __run() {\n%1\n}").arg(scriptBody);
-    targetFrame->evaluateJavaScript(scriptBody);
+    targetFrame->evaluateJavaScript(scriptBody, QString(JAVASCRIPT_SOURCE_CODE_URL).arg(QFileInfo(scriptPath).fileName()));
 
     if (autorun) {
-        targetFrame->evaluateJavaScript("__run()");
+        targetFrame->evaluateJavaScript("__run()", QString());
     }
 
     return true;

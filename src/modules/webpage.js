@@ -115,8 +115,7 @@ function definePageSignalHandler(page, handlers, handlerName, signalName) {
             return !!handlers[handlerName] && typeof handlers[handlerName].callback === "function" ?
                 handlers[handlerName].callback :
                 undefined;
-        },
-        configurable: true
+        }
     });
 }
 

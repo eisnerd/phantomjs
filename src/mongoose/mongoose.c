@@ -57,7 +57,6 @@
 
 #if defined(_WIN32) && !defined(__SYMBIAN32__) // Windows specific
 #define _WIN32_WINNT 0x0400 // To make it link in VS2005
-#include <winsock2.h>
 #include <windows.h>
 
 #ifndef PATH_MAX
@@ -68,6 +67,7 @@
 #include <process.h>
 #include <direct.h>
 #else // _WIN32
+#include <winsock2.h>
 #include <io.h>
 #include <fcntl.h>
 
