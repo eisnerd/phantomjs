@@ -8,15 +8,9 @@ DESTDIR = ../bin
 RESOURCES = phantomjs.qrc \
     ghostdriver/ghostdriver.qrc
 
-WEB_INSPECTOR_RESOURCES_DIR = $$(WEB_INSPECTOR_RESOURCES_DIR)
-isEmpty(WEB_INSPECTOR_RESOURCES_DIR): {
-    error("You must set the environment variable WEB_INSPECTOR_RESOURCES_DIR to generated Web Inspector resources")
-}
-
-CONFIG(static) {
+CONFIG(static):win32: {
     RESOURCES += \
-        $(WEB_INSPECTOR_RESOURCES_DIR)/WebInspector.qrc
-    message("Using Web Inspector resources from $(WEB_INSPECTOR_RESOURCES_DIR)")
+        $$(WEB_INSPECTOR_RESOURCES_DIR)/WebInspector.qrc
 }
 
 HEADERS = \
