@@ -93,6 +93,7 @@ linux {
 
     CONFIG += c++11
     QTPLUGIN.platforms = -
+    LIBS += -L$$PWD/qt/qtbase/plugins/platforms
     LIBS += -L$$PWD/qt-qpa-platform-plugin/plugins/platforms
     LIBS += -lqphantom
 }
